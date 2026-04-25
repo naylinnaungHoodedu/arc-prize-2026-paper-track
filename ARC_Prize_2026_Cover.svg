@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" font-family="Calibri, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAFBFC"/>
+      <stop offset="100%" stop-color="#F0F2F5"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 Z" fill="#1F3864"/>
+    </marker>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#1F3864" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="600" y="58" text-anchor="middle" font-size="32" font-weight="700" fill="#1F3864" letter-spacing="0.5">
+    Hybrid Theory-Based Agent for ARC-AGI-3
+  </text>
+  <text x="600" y="90" text-anchor="middle" font-size="18" font-style="italic" fill="#404040">
+    Bayesian skill-acquisition under Core-Knowledge priors
+  </text>
+
+  <!-- Top accent bar -->
+  <rect x="200" y="105" width="800" height="2" fill="#1F3864"/>
+
+  <!-- ========== Panel 1: Frame ========== -->
+  <g transform="translate(80,160)">
+    <rect width="220" height="280" rx="8" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.5" filter="url(#softShadow)"/>
+    <text x="110" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1F3864" letter-spacing="1.2">
+      1 . PERCEIVE
+    </text>
+    <text x="110" y="56" text-anchor="middle" font-size="14" fill="#262626">64x64 frame, 16 colors</text>
+
+    <!-- 8x8 grid representation -->
+    <g transform="translate(38,80)" shape-rendering="crispEdges">
+      <rect x="0"   y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="54"  y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="0"  width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="0"  width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="18" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="18" width="18" height="18" fill="#5DADE2"/>
+      <rect x="36"  y="18" width="18" height="18" fill="#5DADE2"/>
+      <rect x="54"  y="18" width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="18" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="18" width="18" height="18" fill="#E74C3C"/>
+      <rect x="108" y="18" width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="18" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="36" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="36" width="18" height="18" fill="#5DADE2"/>
+      <rect x="36"  y="36" width="18" height="18" fill="#5DADE2"/>
+      <rect x="54"  y="36" width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="36" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="36" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="36" width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="36" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="54"  y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="54" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="54" width="18" height="18" fill="#F39C12"/>
+      <rect x="126" y="54" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="72" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="72" width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="72" width="18" height="18" fill="#27AE60"/>
+      <rect x="54"  y="72" width="18" height="18" fill="#27AE60"/>
+      <rect x="72"  y="72" width="18" height="18" fill="#27AE60"/>
+      <rect x="90"  y="72" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="72" width="18" height="18" fill="#F39C12"/>
+      <rect x="126" y="72" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="54"  y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="90" width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="90" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="54"  y="108" width="18" height="18" fill="#9B59B6"/>
+      <rect x="72"  y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="108" width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="108" width="18" height="18" fill="#2D3142"/>
+
+      <rect x="0"   y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="18"  y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="36"  y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="54"  y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="72"  y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="90"  y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="108" y="126" width="18" height="18" fill="#2D3142"/>
+      <rect x="126" y="126" width="18" height="18" fill="#2D3142"/>
+    </g>
+
+    <text x="110" y="260" text-anchor="middle" font-size="11" fill="#808080">raw input from env.step()</text>
+  </g>
+
+  <!-- ========== Panel 2: Object-centric encoding ========== -->
+  <g transform="translate(340,160)">
+    <rect width="220" height="280" rx="8" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.5" filter="url(#softShadow)"/>
+    <text x="110" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1F3864" letter-spacing="1.2">
+      2 . ENCODE
+    </text>
+    <text x="110" y="56" text-anchor="middle" font-size="14" fill="#262626">CNN -&gt; object set</text>
+
+    <g transform="translate(20,80)">
+      <rect x="0" y="0" width="180" height="32" rx="4" fill="#F8F9FB" stroke="#5DADE2" stroke-width="1.5"/>
+      <rect x="6" y="6" width="20" height="20" fill="#5DADE2" rx="2"/>
+      <text x="34" y="20" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">obj1: blue 2x2 @ (12,7)</text>
+
+      <rect x="0" y="40" width="180" height="32" rx="4" fill="#F8F9FB" stroke="#E74C3C" stroke-width="1.5"/>
+      <rect x="6" y="46" width="20" height="20" fill="#E74C3C" rx="2"/>
+      <text x="34" y="60" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">obj2: red 1x1 @ (45,8)</text>
+
+      <rect x="0" y="80" width="180" height="32" rx="4" fill="#F8F9FB" stroke="#27AE60" stroke-width="1.5"/>
+      <rect x="6" y="86" width="20" height="20" fill="#27AE60" rx="2"/>
+      <text x="34" y="100" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">obj3: green L @ (18,33)</text>
+
+      <rect x="0" y="120" width="180" height="32" rx="4" fill="#F8F9FB" stroke="#F39C12" stroke-width="1.5"/>
+      <rect x="6" y="126" width="20" height="20" fill="#F39C12" rx="2"/>
+      <text x="34" y="140" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">obj4: orange 1x2 vert</text>
+    </g>
+
+    <text x="110" y="260" text-anchor="middle" font-size="11" fill="#808080">~1.5M-param encoder</text>
+  </g>
+
+  <!-- ========== Panel 3: Bayesian hypothesis beam ========== -->
+  <!-- Fixes: bars are now thinner and labels sit ABOVE bars to prevent overlap; ascii-safe symbols only -->
+  <g transform="translate(600,160)">
+    <rect width="220" height="280" rx="8" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.5" filter="url(#softShadow)"/>
+    <text x="110" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1F3864" letter-spacing="1.2">
+      3 . INFER
+    </text>
+    <text x="110" y="56" text-anchor="middle" font-size="13" fill="#262626" font-family="Consolas, Courier New, monospace">P(h | h_t) prop to P(h_t|h) P(h)</text>
+
+    <!-- Posterior: each hypothesis is a labeled row with text ABOVE the bar -->
+    <g transform="translate(20,84)">
+      <!-- h1 (MAP) -->
+      <text x="0" y="10" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace" font-weight="700">h1: ACT1 -&gt; blue+1x      .62</text>
+      <rect x="0" y="14" width="180" height="8" fill="#1F3864" rx="1"/>
+
+      <!-- h2 -->
+      <text x="0" y="40" font-size="11" fill="#404040" font-family="Consolas, Courier New, monospace">h2: ACT1 -&gt; red+1x       .21</text>
+      <rect x="0" y="44" width="62" height="8" fill="#5470A0" rx="1"/>
+
+      <!-- h3 -->
+      <text x="0" y="70" font-size="11" fill="#404040" font-family="Consolas, Courier New, monospace">h3: gravity y+1          .11</text>
+      <rect x="0" y="74" width="32" height="8" fill="#8FA9C9" rx="1"/>
+
+      <!-- h4 -->
+      <text x="0" y="100" font-size="11" fill="#404040" font-family="Consolas, Courier New, monospace">h4: rotate 90 deg        .04</text>
+      <rect x="0" y="104" width="12" height="8" fill="#BFCCDA" rx="1"/>
+
+      <text x="0" y="130" font-size="10" fill="#808080" font-style="italic">... 60 more in beam</text>
+      <text x="0" y="150" font-size="10" fill="#404040" font-family="Consolas, Courier New, monospace">MDL: P(h) prop exp(-L/tau)</text>
+    </g>
+
+    <text x="110" y="260" text-anchor="middle" font-size="11" fill="#808080">K = 64 program beam</text>
+  </g>
+
+  <!-- ========== Panel 4: Action selection by EIG ========== -->
+  <g transform="translate(860,160)">
+    <rect width="260" height="280" rx="8" fill="#FFFFFF" stroke="#D0D7DE" stroke-width="1.5" filter="url(#softShadow)"/>
+    <text x="130" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1F3864" letter-spacing="1.2">
+      4 . ACT
+    </text>
+    <text x="130" y="56" text-anchor="middle" font-size="14" fill="#262626" font-family="Consolas, Courier New, monospace">argmax EIG(a)</text>
+
+    <g transform="translate(20,80)">
+      <text x="0"   y="0"  font-size="11" font-weight="700" fill="#404040">action</text>
+      <text x="100" y="0"  font-size="11" font-weight="700" fill="#404040">EIG (nats)</text>
+      <line x1="0" y1="6" x2="220" y2="6" stroke="#D0D7DE"/>
+
+      <text x="0"   y="24" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">RESET</text>
+      <rect x="100" y="14" width="20" height="14" fill="#BFCCDA" rx="1"/>
+      <text x="195" y="24" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace">.08</text>
+
+      <text x="0"   y="46" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">ACTION1 up</text>
+      <rect x="100" y="36" width="78" height="14" fill="#27AE60" rx="1"/>
+      <text x="195" y="46" font-size="11" fill="#27AE60" font-weight="700" font-family="Consolas, Courier New, monospace">.41 *</text>
+
+      <text x="0"   y="68" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">ACTION2 down</text>
+      <rect x="100" y="58" width="32" height="14" fill="#5470A0" rx="1"/>
+      <text x="195" y="68" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace">.18</text>
+
+      <text x="0"   y="90" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">ACTION3 left</text>
+      <rect x="100" y="80" width="46" height="14" fill="#5470A0" rx="1"/>
+      <text x="195" y="90" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace">.24</text>
+
+      <text x="0"   y="112" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">ACTION4 right</text>
+      <rect x="100" y="102" width="14" height="14" fill="#BFCCDA" rx="1"/>
+      <text x="195" y="112" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace">.07</text>
+
+      <text x="0"   y="134" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">ACTION5 act</text>
+      <rect x="100" y="124" width="38" height="14" fill="#5470A0" rx="1"/>
+      <text x="195" y="134" font-size="11" fill="#1F3864" font-family="Consolas, Courier New, monospace">.21</text>
+    </g>
+
+    <text x="130" y="260" text-anchor="middle" font-size="11" fill="#808080">picked: maximize info gain</text>
+  </g>
+
+  <!-- ========== Connecting arrows ========== -->
+  <line x1="305" y1="300" x2="335" y2="300" stroke="#1F3864" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="565" y1="300" x2="595" y2="300" stroke="#1F3864" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="825" y1="300" x2="855" y2="300" stroke="#1F3864" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- ========== Bottom strip: scoring + summary (FIXED to be factually honest) ========== -->
+  <g transform="translate(80,470)">
+    <rect width="1040" height="170" rx="8" fill="#1F3864"/>
+
+    <text x="40" y="42" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">SCORING</text>
+    <text x="40" y="68" font-size="22" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace">
+      RHAE = (human / AI)^2
+    </text>
+    <text x="40" y="92" font-size="13" fill="#D9E2F3">
+      capped at 1.0x human baseline
+    </text>
+    <text x="40" y="116" font-size="13" fill="#D9E2F3">
+      every wasted action squares against the score
+    </text>
+    <text x="40" y="140" font-size="13" fill="#D9E2F3" font-style="italic">
+      brute force is strictly dominated
+    </text>
+
+    <line x1="380" y1="20" x2="380" y2="150" stroke="#5470A0" stroke-width="1"/>
+
+    <text x="410" y="42" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">FRONTIER (March 2026 launch)</text>
+    <text x="410" y="72" font-size="13" fill="#D9E2F3">Humans (calibrated baseline)</text>
+    <text x="660" y="72" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">100.00%</text>
+    <text x="410" y="94" font-size="13" fill="#D9E2F3">StochasticGoose at preview*</text>
+    <text x="660" y="94" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">12.58%</text>
+    <text x="410" y="116" font-size="13" fill="#D9E2F3">StochasticGoose at launch*</text>
+    <text x="660" y="116" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">0.25%</text>
+    <text x="410" y="138" font-size="13" fill="#D9E2F3">Frontier LLMs (Opus / GPT / Gemini)</text>
+    <text x="660" y="138" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">&lt; 1%</text>
+    <text x="410" y="156" font-size="9" fill="#A6BBD3" font-style="italic">*generalization gap on private set is the load-bearing risk</text>
+
+    <line x1="700" y1="20" x2="700" y2="150" stroke="#5470A0" stroke-width="1"/>
+
+    <text x="730" y="42" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">RUBRIC TARGETS</text>
+    <text x="730" y="72" font-size="13" fill="#D9E2F3">Theory . Universality . Completeness</text>
+    <text x="730" y="92" font-size="22" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace">&gt;= 4.5 / 5</text>
+    <text x="730" y="116" font-size="13" fill="#D9E2F3">Progress . Novelty</text>
+    <text x="730" y="136" font-size="22" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace">&gt;= 4.0 / 5</text>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="660" text-anchor="middle" font-size="11" fill="#808080" font-style="italic">
+    Nay Linn Aung   .   ARC Prize 2026 - Paper Track   .   April 2026
+  </text>
+</svg>

@@ -1,0 +1,12 @@
+{
+  "static_audit": {
+    "checks": {
+      "cover_present": true,
+      "notebook_present": true,
+      "package_present": true,
+      "seed_documented": true
+    },
+    "findings": [],
+    "ok": true
+  }
+}
