@@ -7,7 +7,8 @@
 - Repository visibility: public
 - Repository URL: `https://github.com/naylinnaungHoodedu/arc-prize-2026-paper-track`
 - Local workspace: `c:\Users\user\Downloads\ARC Prize 2026 - Paper Track`
-- Initial publication commit: the Git commit containing this log. Verify with `git rev-parse HEAD` after clone or checkout.
+- Initial package commit: `61a5fa476386345915fcf4afe20430e9a2ef7d7f`
+- Publication metadata update: this activity log records the exact initial package commit after repository creation and push.
 - License posture: CC-BY-4.0 for this package; upstream dependencies retain their own licenses.
 
 ## Source Materials Reviewed
@@ -86,4 +87,3 @@ Official ARC-AGI-3 data and the local `arc_agi` toolkit were not present in this
 - Risk: notebook too complex for reviewers. Mitigation: notebook uses progressive disclosure with narrative before execution.
 - Risk: accidental network or hosted API dependency. Mitigation: offline preflight, socket guard, static audit, and no runtime installation cells.
 - Risk: committing official datasets or secrets. Mitigation: `.gitignore` excludes `.env` files and `data/arc_agi_3/`.
-
