@@ -7,6 +7,7 @@ from typing import Any
 
 import numpy as np
 
+from .actions import canonical_action_name
 from .arc_adapter import probe_alive_actions
 from .encoder import ObjectSet, encode_frame, object_distance
 from .goal import GoalInferer
@@ -25,12 +26,14 @@ class HTBAAgent:
         beam_width: int = 64,
         eig_samples: int = 8,
         entropy_threshold: float = 0.25,
+        plan_depth: int = 6,
         memory_dir: str | Path = "out/memory",
     ) -> None:
         self.seed = int(seed)
         self.beam_width = int(beam_width)
         self.eig_samples = int(eig_samples)
         self.entropy_threshold = float(entropy_threshold)
+        self.plan_depth = int(plan_depth)
         self.rng = np.random.default_rng(self.seed)
         self.memory = CrossGameMemory(Path(memory_dir))
         self.trace = ReasoningTrace()
@@ -51,6 +54,7 @@ class HTBAAgent:
             entropy_threshold=self.entropy_threshold,
             eig_samples=self.eig_samples,
             seed=self.seed,
+            plan_depth=self.plan_depth,
         )
         self.beam = None
         self.current_objects = None
@@ -77,7 +81,7 @@ class HTBAAgent:
         self.actions_taken.append(decision.action)
         step = len(self.actions_taken)
         map_program = self.beam.map_entry().program
-        predicted = map_program.predict(current, decision.action)
+        predicted = map_program.predict(current, canonical_action_name(decision.action))
         self.trace.append(
             ReasoningTraceRecord(
                 step=step,
@@ -108,9 +112,10 @@ class HTBAAgent:
             raise RuntimeError("Call act(frame) before observe(action, next_frame, win).")
         observed_next = encode_frame(next_frame, previous=self.current_objects)
         before = self.current_objects
-        predicted_next = self.beam.map_entry().program.predict(before, str(action))
+        action_name = canonical_action_name(action)
+        predicted_next = self.beam.map_entry().program.predict(before, action_name)
         mismatch = object_distance(predicted_next, observed_next)
-        self.beam = self.beam.update(before, str(action), observed_next)
+        self.beam = self.beam.update(before, action_name, observed_next)
         self.goal.update(before, observed_next, bool(win))
         self.current_objects = observed_next
         if win:

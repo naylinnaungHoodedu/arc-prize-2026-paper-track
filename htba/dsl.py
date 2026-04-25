@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Iterable
 
+from .actions import canonical_action_name, normalize_actions
 from .encoder import ObjectSet
 
 
@@ -36,7 +37,7 @@ class RuleProgram:
     params: dict[str, Any] = field(default_factory=dict)
 
     def applies_to(self, action: str) -> bool:
-        return self.trigger_action is None or str(action) == self.trigger_action
+        return self.trigger_action is None or canonical_action_name(action) == self.trigger_action
 
     def predict(self, objects: ObjectSet, action: str) -> ObjectSet:
         if not self.applies_to(str(action)):
@@ -76,13 +77,6 @@ class RuleProgram:
             "trigger_action": self.trigger_action,
             "params": dict(self.params),
         }
-
-
-def normalize_actions(actions: Iterable[Any]) -> tuple[str, ...]:
-    normalized = tuple(sorted({str(action) for action in actions}))
-    if not normalized:
-        raise ValueError("At least one alive action is required.")
-    return normalized
 
 
 def generate_initial_programs(actions: Iterable[Any], objects: ObjectSet) -> list[RuleProgram]:

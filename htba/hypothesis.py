@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import math
 from typing import Any, Iterable
 
+from .actions import canonical_action_name
 from .dsl import RuleProgram, compose_programs, generate_initial_programs
 from .encoder import ObjectSet, object_distance
 
@@ -101,7 +102,7 @@ class HypothesisBeam:
         return normalized[: self.beam_width]
 
     def update(self, current: ObjectSet, action: Any, observed_next: ObjectSet) -> "HypothesisBeam":
-        action_name = str(action)
+        action_name = canonical_action_name(action)
         updated: list[HypothesisEntry] = []
         for entry in self.entries:
             prediction = entry.program.predict(current, action_name)
@@ -158,9 +159,10 @@ class HypothesisBeam:
 
     def prediction_distribution(self, current: ObjectSet, action: Any) -> dict[tuple[Any, ...], tuple[float, ObjectSet]]:
         distribution: dict[tuple[Any, ...], tuple[float, ObjectSet]] = {}
+        action_name = canonical_action_name(action)
         for entry in self.entries:
             probability = math.exp(entry.log_weight)
-            prediction = entry.program.predict(current, str(action))
+            prediction = entry.program.predict(current, action_name)
             signature = prediction.signature()
             old_probability, _ = distribution.get(signature, (0.0, prediction))
             distribution[signature] = (old_probability + probability, prediction)

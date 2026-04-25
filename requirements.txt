@@ -2,3 +2,4 @@ numpy
 matplotlib
 nbformat
 pytest
+arc-agi==0.9.7

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from textwrap import dedent
 
 import nbformat as nbf
 
@@ -10,11 +11,11 @@ NOTEBOOK = ROOT / "HTBA_ARC_AGI3_PaperTrack.ipynb"
 
 
 def md(text: str):
-    return nbf.v4.new_markdown_cell(text.strip() + "\n")
+    return nbf.v4.new_markdown_cell(dedent(text).strip() + "\n")
 
 
 def code(text: str):
-    return nbf.v4.new_code_cell(text.strip() + "\n")
+    return nbf.v4.new_code_cell(dedent(text).strip() + "\n")
 
 
 def main() -> int:
@@ -34,13 +35,15 @@ def main() -> int:
 
             ![HTBA cover](ARC_Prize_2026_Cover.png)
 
-            Source of truth: `ARC_Prize_2026_PaperTrack_Strategic_Blueprint.docx`.
-            Blueprint author metadata is preserved: Nay Linn Aung, Hood College,
+            Source of truth: `ARC_Prize_2026_Writeup_Final.md`.
+            Author metadata is preserved: Nay Linn Aung, Hood College,
             M.S. Computer Science (AI / Data Science), Kaggle Team: Nay Linn Aung.
 
             This notebook is intentionally readable before execution. Running it
-            requires local official ARC-AGI-3 data and an importable local
-            `arc_agi` toolkit. There is no synthetic fallback on the execution path.
+            requires the official ARC-AGI-3 toolkit, pinned here as
+            `arc-agi==0.9.7` unless the logged-in Kaggle runtime exposes a newer
+            official version. There is no synthetic fallback on the execution
+            path.
             """
         ),
         md(
@@ -100,7 +103,9 @@ def main() -> int:
 
             - Offline execution only.
             - No external API calls.
-            - Official local ARC data/toolkit required for execution.
+            - The official toolkit must be importable from the Kaggle runtime,
+              `ARC_AGI_TOOLKIT_DIR`, or an attached Kaggle input.
+            - The adapter uses official ARC competition mode when available.
             - Claims are bounded to what the code and blueprint support.
             """
         ),
@@ -152,11 +157,11 @@ def main() -> int:
 
             - C1 Frame Encoder: deterministic connected-component extraction.
             - C2 Action-Space Probe: reads alive actions from official toolkit
-              metadata.
+              metadata and handles RESET, ACTION1-7, and ACTION6 coordinates.
             - C3 Hypothesis Manager: K=64 Bayesian/MDL beam.
             - C4 Goal Inferer: stores only WIN-linked frame deltas.
-            - C5 Planner: explores by expected information gain and exploits by
-              expected progress under the inferred reward.
+            - C5 Planner: explores by expected information gain and uses bounded
+              depth-6 lookahead for expected progress under the inferred reward.
             - C6 Cross-Game Memory: SHA-256 content-addressed records.
             - C7 Validation Harness: unit tests, static audit, scorecard output.
 
@@ -190,7 +195,8 @@ def main() -> int:
                 seed=0xA6C16E26,
                 beam_width=64,
                 eig_samples=8,
-                entropy_threshold=theta
+                entropy_threshold=theta,
+                plan_depth=6
             )
             ```
 
@@ -205,17 +211,18 @@ def main() -> int:
             Runtime flow:
 
             ```
-            preflight official local resources
-            load three official local games
-            for each game:
+            preflight official toolkit resources
+            create arc_agi.Arcade(operation_mode=OperationMode.COMPETITION)
+            iterate available official environments
+            for each environment:
                 reset agent and official environment
                 encode frame into objects
                 initialize or update posterior beam
                 choose action by EIG if entropy is high
-                otherwise choose expected-progress action
+                otherwise choose bounded expected-progress action
                 observe next frame and WIN signal
                 write structured trace record
-            save out/scorecard.json and out/audit.html
+            save out/scorecard.json, out/reasoning_trace.json, and out/audit.html
             ```
             """
         ),
@@ -237,24 +244,35 @@ def main() -> int:
             """
             ## F. Reproducibility & Execution Notes
 
-            This cell is the hard gate. It requires official local resources and
-            installs the offline socket guard. If the toolkit or data is absent,
-            the failure is intentional and should be fixed by adding the local
-            official resources, not by falling back to synthetic examples.
+            This cell is the hard gate. It requires the official ARC toolkit and
+            leaves ARC competition-mode networking unblocked so the Kaggle
+            runtime can use its required official mechanism. The adapter checks
+            `ARC_AGI_TOOLKIT_DIR` and Kaggle input toolkit locations before
+            relying on an installed package. If the toolkit is absent, the
+            failure is intentional and should be fixed by attaching official
+            resources or using the Kaggle runtime.
             """
         ),
         code(
             """
-            preflight = offline_preflight(root=ROOT, require_toolkit=True, require_data=True)
+            preflight = offline_preflight(
+                root=ROOT,
+                require_toolkit=True,
+                require_data=False,
+                block_network=False,
+            )
             preflight
             """
         ),
         md(
             """
-            The next cell runs the proof-of-concept agent on three official local
-            games through the adapter. If the official toolkit exposes a direct
-            evaluation hook, the adapter uses it. Otherwise it attempts a common
-            `reset` / `step` / `done` environment loop.
+            The next cell runs the proof-of-concept agent through the official
+            ARC toolkit competition-mode adapter. It uses
+            `Arcade(operation_mode=OperationMode.COMPETITION)`,
+            `get_environments()`, one `make()` per environment, and toolkit
+            action conversion. If the toolkit API changes, the adapter falls
+            back only to official toolkit loader shapes; it never uses synthetic
+            tasks on the submission path.
             """
         ),
         code(
@@ -264,16 +282,18 @@ def main() -> int:
                 beam_width=64,
                 eig_samples=8,
                 entropy_threshold=0.25,
+                plan_depth=6,
                 memory_dir=OUT / "memory",
             )
 
             scorecard = run_required_official_evaluation(
                 agent=agent,
                 root=ROOT,
-                game_count=3,
+                game_count=None,
                 max_actions_per_game=1000,
             )
             print(json.dumps(scorecard, indent=2, sort_keys=True))
+            print(f"reasoning trace: {OUT / 'reasoning_trace.json'}")
             """
         ),
         md(
@@ -290,8 +310,8 @@ def main() -> int:
             - Reward inference from WIN-linked deltas.
             - Required trace fields.
 
-            Task-level execution is intentionally limited to official local
-            ARC-AGI-3 resources. The static audit checks that the notebook,
+            Task-level execution is intentionally limited to official
+            ARC-AGI-3 toolkit resources. The static audit checks that the notebook,
             package, seed, and cover asset are present and scans source files for
             runtime installs, hosted API markers, external URLs, and network
             clients.
@@ -313,8 +333,8 @@ def main() -> int:
             Limitations:
 
             - The local folder did not contain official ARC-AGI-3 data or the
-              local `arc_agi` toolkit at build time, so the execution path is a
-              strict adapter with hard preflight rather than a demonstrated
+              official `arc_agi` toolkit at build time, so the execution path is
+              a strict adapter with hard preflight rather than a demonstrated
               official run.
             - C1 is a deterministic object extractor because no CNN weights were
               supplied locally.

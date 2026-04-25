@@ -20,6 +20,18 @@ def main() -> int:
         json.dumps({"static_audit": result.to_dict()}, indent=2, sort_keys=True),
         encoding="utf-8",
     )
+    (out_dir / "reasoning_trace.json").write_text(
+        json.dumps(
+            {
+                "source": "static_audit_only",
+                "records": [],
+                "note": "Official reasoning traces are written by the notebook evaluation path.",
+            },
+            indent=2,
+            sort_keys=True,
+        ),
+        encoding="utf-8",
+    )
     write_audit_html(result, out_dir / "audit.html")
     print(json.dumps(result.to_dict(), indent=2, sort_keys=True))
     return 0 if result.ok else 1

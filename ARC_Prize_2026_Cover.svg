@@ -18,7 +18,7 @@
 
   <!-- Title -->
   <text x="600" y="58" text-anchor="middle" font-size="32" font-weight="700" fill="#1F3864" letter-spacing="0.5">
-    Hybrid Theory-Based Agent for ARC-AGI-3
+    Hybrid Theory-Based Agents for ARC-AGI-3
   </text>
   <text x="600" y="90" text-anchor="middle" font-size="18" font-style="italic" fill="#404040">
     Bayesian skill-acquisition under Core-Knowledge priors
@@ -119,7 +119,7 @@
     <text x="110" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1F3864" letter-spacing="1.2">
       2 . ENCODE
     </text>
-    <text x="110" y="56" text-anchor="middle" font-size="14" fill="#262626">CNN -&gt; object set</text>
+    <text x="110" y="56" text-anchor="middle" font-size="14" fill="#262626">components -&gt; objects</text>
 
     <g transform="translate(20,80)">
       <rect x="0" y="0" width="180" height="32" rx="4" fill="#F8F9FB" stroke="#5DADE2" stroke-width="1.5"/>
@@ -139,7 +139,7 @@
       <text x="34" y="140" font-size="12" fill="#262626" font-family="Consolas, Courier New, monospace">obj4: orange 1x2 vert</text>
     </g>
 
-    <text x="110" y="260" text-anchor="middle" font-size="11" fill="#808080">~1.5M-param encoder</text>
+    <text x="110" y="260" text-anchor="middle" font-size="11" fill="#808080">deterministic encoder</text>
   </g>
 
   <!-- ========== Panel 3: Bayesian hypothesis beam ========== -->
@@ -242,16 +242,11 @@
 
     <line x1="380" y1="20" x2="380" y2="150" stroke="#5470A0" stroke-width="1"/>
 
-    <text x="410" y="42" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">FRONTIER (March 2026 launch)</text>
-    <text x="410" y="72" font-size="13" fill="#D9E2F3">Humans (calibrated baseline)</text>
-    <text x="660" y="72" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">100.00%</text>
-    <text x="410" y="94" font-size="13" fill="#D9E2F3">StochasticGoose at preview*</text>
-    <text x="660" y="94" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">12.58%</text>
-    <text x="410" y="116" font-size="13" fill="#D9E2F3">StochasticGoose at launch*</text>
-    <text x="660" y="116" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">0.25%</text>
-    <text x="410" y="138" font-size="13" fill="#D9E2F3">Frontier LLMs (Opus / GPT / Gemini)</text>
-    <text x="660" y="138" font-size="13" font-weight="700" fill="#FFFFFF" font-family="Consolas, Courier New, monospace" text-anchor="end">&lt; 1%</text>
-    <text x="410" y="156" font-size="9" fill="#A6BBD3" font-style="italic">*generalization gap on private set is the load-bearing risk</text>
+    <text x="410" y="42" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="1.2">SUBMISSION BOUNDARY</text>
+    <text x="410" y="72" font-size="13" fill="#D9E2F3">Official Kaggle code run required</text>
+    <text x="410" y="96" font-size="13" fill="#D9E2F3">No hosted AI calls or runtime installs</text>
+    <text x="410" y="120" font-size="13" fill="#D9E2F3">MIT-0 code / CC0-1.0 docs</text>
+    <text x="410" y="146" font-size="9" fill="#A6BBD3" font-style="italic">paper score must be tied to the linked Kaggle submission</text>
 
     <line x1="700" y1="20" x2="700" y2="150" stroke="#5470A0" stroke-width="1"/>
 
