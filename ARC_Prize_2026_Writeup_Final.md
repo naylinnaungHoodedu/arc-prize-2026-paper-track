@@ -2,9 +2,9 @@
 
 ## Abstract
 
-ARC-AGI-3 changes ARC from static grid induction into interactive skill acquisition. An agent is not merely asked to infer an output grid; it must choose actions, observe consequences, infer dynamics, and identify useful goals without instructions. We present the Hybrid Theory-Based Agent (HTBA), a proof-of-concept architecture for this setting. HTBA combines deterministic object-centric perception, a Bayesian posterior over symbolic transition programs, a Minimum Description Length prior, WIN-linked goal inference, and information-gain action selection. The contribution is not a claim of leaderboard dominance. It is a reproducible and auditable reasoning scaffold whose decisions are recorded as separate observation, hypothesis, transformation, validation, posterior, action, and rationale fields.
+ARC-AGI-3 changes ARC from static grid induction into interactive skill acquisition. An agent is not merely asked to infer an output grid; it must choose actions, observe consequences, infer dynamics, and identify useful goals without instructions. We present the Hybrid Theory-Based Agent (HTBA), a proof-of-concept architecture for this setting. HTBA combines deterministic object-centric perception, a Bayesian posterior over symbolic transition programs, a Minimum Description Length prior, WIN-linked goal inference, and information-gain action selection. The contribution is a reproducible and auditable reasoning scaffold whose decisions are recorded as separate observation, hypothesis, transformation, validation, posterior, action, and rationale fields.
 
-Required submission linkage: insert the final ARC-AGI-3 Kaggle code submission URL here before submitting the Paper Track writeup.
+Submission linkage: ARC-AGI-3 Kaggle code submission at https://www.kaggle.com/code/naylinnaunghood/htba-arc-agi-3-paper-track (version 2). Official RHAE score: 0.0 across 25 environments, 5,002 total actions, 0 levels completed. Scorecard ID: 2c3b03b7-c2c5-4c55-9d0e-86441dd2af4b.
 
 ## 1. Introduction
 
@@ -56,13 +56,13 @@ HTBAAgent.scorecard()
 HTBAAgent.reasoning_trace()
 ```
 
-The official adapter uses `arc_agi.Arcade(operation_mode=OperationMode.COMPETITION)` when the toolkit exposes it. It obtains environments with `get_environments()`, calls `make()` once per environment, converts selected actions to toolkit `GameAction` values when possible, passes coordinate payloads through `env.step(action, data=...)`, and writes `out/scorecard.json` plus `out/reasoning_trace.json`.
+The official adapter uses `arc_agi.Arcade(operation_mode=OperationMode.COMPETITION)` when the toolkit exposes it. It obtains environments with `get_environments()`, calls `make()` once per environment, converts selected actions to toolkit `GameAction` values when possible, passes coordinate payloads through `env.step(action, data=...)`, attempts `close_scorecard()` after all environments run, falls back to `get_scorecard()` if final details are withheld, and writes `out/scorecard.json` plus `out/reasoning_trace.json`.
 
-The implementation pins the public toolkit version verified during final preparation as `arc-agi==0.9.7`, unless the logged-in Kaggle runtime exposes a newer official version. Authored code is MIT-0. Documentation, writeups, generated narrative artifacts, and visual assets are CC0-1.0.
+The implementation pins the current public toolkit version verified during final preparation as `arc-agi==0.9.8`, unless the logged-in Kaggle runtime exposes a newer official version. Authored code is MIT-0. Documentation, writeups, generated narrative artifacts, and visual assets are CC0-1.0.
 
 ## 5. Results and Reproducibility
 
-Local validation covers the reasoning scaffold rather than official leaderboard performance. The non-integration test suite validates object extraction, motion deltas, MDL preference, posterior normalization, beam pruning, zero information gain when hypotheses agree, deterministic planning, reward inference, trace fields, action canonicalization, ACTION6 coordinate generation, ACTION7 handling, notebook structure, and a mocked official competition-mode adapter path.
+Local validation covers the reasoning scaffold rather than official task performance. The non-integration test suite validates object extraction, motion deltas, MDL preference, posterior normalization, beam pruning, zero information gain when hypotheses agree, deterministic planning, reward inference, trace fields, action canonicalization, ACTION6 coordinate generation, ACTION7 handling, notebook structure, and a mocked official competition-mode adapter path.
 
 The package writes three review artifacts:
 
